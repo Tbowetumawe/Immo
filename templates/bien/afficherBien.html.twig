@@ -36,7 +36,7 @@ Formulaire Ajout Bien
                 <td style="background-color:33ffce; border:4px solid #27eade;">{{ unBien.getLocalisation }}</td>
                 <td style="background-color:33ffce; border:4px solid #27eade;">{{ unBien.getEtat }}</td>
                 <td><a href="/update_bien/{{ unBien.id }}" ><button type="button" class="btn btn-warning">Modifier</button></a></td>
-                <td><a href="/delete_bien/{{ unBien.id }}" ><button type="button" class="btn btn-warning">Supprimer</button></a></td>
+                <td><a href="/verif/supprimer/{{ unBien.id }}" ><button type="button" class="btn btn-warning">Supprimer</button></a></td>
             </tr>
         {% endfor %}
         

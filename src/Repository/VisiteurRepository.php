@@ -19,6 +19,21 @@ class VisiteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Visiteur::class);
     }
 
+    public function getUnVisiteur($id)
+    {
+        $qb = $this->_em->createQueryBuilder();
+        $qb->select('a')
+            ->from(Visiteur::class,'a')
+            ->where('a.id = :id')
+            ->setParameter('id', $id);
+        
+        $query = $qb->getQuery();
+        
+        $result = $query->getOneOrNullResult();
+        
+        return $result;
+    }
+    
     // /**
     //  * @return Visiteur[] Returns an array of Visiteur objects
     //  */

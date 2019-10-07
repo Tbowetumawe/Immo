@@ -90,6 +90,18 @@ class BienController extends AbstractController
         return $this->render( 'bien/updateBien.html.twig', array(
             'form' =>$form->createView(), 'bien'=>$bien));
     }
+    
+     /**
+      *
+      *@Route("/verif/supprimer/{id}",name="verif_del_art")
+      *
+      */
+   
+    public function deleteVerif(Session $session, $id){
+        $bien = new Bien() ;
+        $bien = $this->getDoctrine()->getManager()->getRepository(Bien::class)->getUnBien($id);
+        return $this->render('bien/delete.html.twig', array('bien'=>$bien));
+    }
         /**
       *
       *@Route("/bien/supprimer/{id}",name="del_bien")
@@ -97,11 +109,11 @@ class BienController extends AbstractController
       */
     public function deleterArticle(Session $session, $id){
         $bien = new Bien() ;
-        $bien= $this->getDoctrine()->getManager()->getRepository(Article::class)->getUnArticle($id);
+        $bien= $this->getDoctrine()->getManager()->getRepository(Bien::class)->getUnBien($id);
         $em = $this->getDoctrine()->getManager();
         $em->remove($bien);
         $em->flush();
-        return $this->redirectToRoute('del_bien');
+        return $this->redirectToRoute('updateBien');
     }
 
  }
